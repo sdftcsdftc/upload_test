@@ -67,6 +67,9 @@ class LocalDriver implements UploadInterface
         if (!$out = fopen($uploadPath, "wb")) {
             throw new UploadException('上传的路径没有写入权限');
         }
+        while ($buff = fread($in, 4096)) {
+            fwrite($out, $buff);
+        }
         fclose($in);
         fclose($out);
 
