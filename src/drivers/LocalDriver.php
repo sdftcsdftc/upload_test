@@ -56,7 +56,7 @@ class LocalDriver implements UploadInterface
             }
             $random = lcg_value();
             $uploadPath = $saveDir . DIRECTORY_SEPARATOR .$f->identifier.$random.'.'.$f->ext;
-            $res['filepath'] = '/vod/resources/'.date('Ymd') . '/' . $f->identifier.$random.'.'.$f->ext;
+            // $res['filepath'] = '/vod/resources/'.date('Ymd') . '/' . $f->identifier.$random.'.'.$f->ext;
             $res['savepath'] = $uploadPath;
             $res['merge'] = false;
         } else { //需要合并
@@ -116,7 +116,7 @@ class LocalDriver implements UploadInterface
         fclose($out);
 
         $res['code'] = 0;
-        $res['filepath'] = '/vod/resources/'.date('Ymd') . '/' . $f->identifier.$random.'.'.$f->ext;
+        // $res['filepath'] = '/vod/resources/'.date('Ymd') . '/' . $f->identifier.$random.'.'.$f->ext;
         $res['savepath'] = $uploadPath;
 
 
