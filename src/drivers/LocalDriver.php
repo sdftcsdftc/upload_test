@@ -64,6 +64,10 @@ class LocalDriver implements UploadInterface
             $uploadPath = $filePath . '_' . $f->chunkNumber; //临时分片文件名
             $res['merge'] = true;
         }
+        $baseDir = dirname($uploadPath);
+        if (!is_dir($baseDir)) {
+            mkdir($baseDir,0777,true);
+        }
         if (!$out = fopen($uploadPath, "wb")) {
             throw new UploadException('上传的路径没有写入权限');
         }
