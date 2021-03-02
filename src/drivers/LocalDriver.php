@@ -122,7 +122,10 @@ class LocalDriver implements UploadInterface
             throw new UploadException(1006, 'upload path is not writable');
         }
         if (flock($out, LOCK_EX)) { // 进行排他型锁定
-            for ($index = 1; $index <= $totalChunks; $index++) {
+            $sliceFirst = $this->config['slice_first'] ?? 1;
+            $totalChunks = $f->totalChunks;
+            $loopCount = $sliceFirst ? $totalChunks + 1 : $totalChunks;
+            for ($index = $sliceFirst; $index < $loopCount; $index++) {
                 if (!$in = fopen("{$filePath}_{$index}", "rb")) {
                     break;
                 }
